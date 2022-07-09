@@ -19,8 +19,6 @@ const options = {
   defaultDate: Date.now(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    // console.log(selectedDates[0]);
-
     selectedDate = selectedDates[0];
 
     calculateTimeDiff();
@@ -42,14 +40,15 @@ countdownBtn.disabled = true;
 countdownBtn.addEventListener('click', onCountdownBtnClick);
 
 function onCountdownBtnClick() {
-  
+  dateInputEl.disabled = true;
+  countdownBtn.disabled = true;
+
   intervalId = setInterval(() => {
     calculateTimeDiff();
     if (ms <= 1000) {
       clearInterval(intervalId);
-      countdownBtn.disabled = true;
     };
-      showTimerValue(convertMs(ms));
+    showTimerValue(convertMs(ms));
   }, 1000);
 }
 
